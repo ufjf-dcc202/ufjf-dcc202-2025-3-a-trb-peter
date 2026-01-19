@@ -6,5 +6,20 @@
 }
 .celula {
     padding: 5px;
-    
+
+}
+
+.botoes img {
+    height: 50px;
+    width: 50px;
+
+}
+.botoes img:hover{
+    height: 60px;
+    width: 60px;
+    animation-duration: 0.5s;
+}
+
+.botoes {
+    padding: 20px;
 }
