@@ -1,0 +1,10 @@
+.mapa {
+    border-style: dashed;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 3px;
+}
+.celula {
+    padding: 5px;
+    
+}
