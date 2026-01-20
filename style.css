@@ -1,25 +1,44 @@
 .mapa {
+    grid-column-start: 1;
     border-style: dashed;
     border-width: 1px;
     border-color: black;
     border-radius: 3px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 20px;
 }
 .celula {
     padding: 5px;
+    width: 40px;
 
 }
+.titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-.botoes img {
+
+button img {
     height: 50px;
     width: 50px;
 
 }
-.botoes img:hover{
-    height: 60px;
-    width: 60px;
-    animation-duration: 0.5s;
-}
 
 .botoes {
+    grid-column-start: 1;
     padding: 20px;
+}
+
+main {
+    margin: 5px;
+    border: 1px solid black;
+    display:grid;
+
+
+}
+.acoes{
+    grid-column-start: 2;
+    grid-row-start: 1;
 }
