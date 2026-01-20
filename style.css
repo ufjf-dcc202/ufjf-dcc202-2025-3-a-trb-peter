@@ -62,7 +62,20 @@ main {
 
 }
 .acoes{
+    
     grid-column-start: 2;
     grid-row-start: 2;
+    padding: 10px;
 }
 
+.caixa-acoes{ 
+    box-sizing: border-box;
+    border: 1px solid black;
+    column-count: 5;
+    
+    
+}
+.caixa-acoes img{
+    height: 5vw;
+    width: 5vw; 
+}
