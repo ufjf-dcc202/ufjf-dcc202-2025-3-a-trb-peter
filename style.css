@@ -1,5 +1,6 @@
 .mapa {
     grid-column-start: 1;
+    display: flex;
     border-style: dashed;
     border-width: 1px;
     border-color: black;
@@ -7,26 +8,48 @@
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+    
+}
+.area{
+    display: grid;
+    grid-template-columns: repeat(3,33%);    
+    grid-template-rows: rep eat(3,33%);
+     height: 40vw;
+    width: 40vw;    
+
 }
 .celula {
-    padding: 5px;
-    width: 40px;
-
+    width: 100%;
+    height: 100%;
+    background-image: url(https://th.bing.com/th/id/OIP.2v--1Tbp7W6Kbfe2IM5wZQHaE8?w=268&h=180&c=7&r=0&o=7&pid=1.7&rm=3);
+    background-size: calc(10vw - 4px);
+    border: 1px black solid;
 }
 .titulo {
     display: flex;
     align-items: center;
     justify-content: center;
+    grid-row-end: 2;
+    grid-column-end: 2;
+}
+button{
+    margin:10px;
 }
 
-
 button img {
-    height: 50px;
-    width: 50px;
-
+    height: 10vw;
+    width: 10vw;  
+    
 }
 
 .botoes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     grid-column-start: 1;
     padding: 20px;
 }
@@ -40,5 +63,6 @@ main {
 }
 .acoes{
     grid-column-start: 2;
-    grid-row-start: 1;
+    grid-row-start: 2;
 }
+
