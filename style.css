@@ -16,8 +16,8 @@
 }
 .area{
     display: grid;
-    grid-template-columns: repeat(3,33%);    
-    grid-template-rows: rep eat(3,33%);
+    grid-template-columns: repeat(5,20%);    
+    
      height: 40vw;
     width: 40vw;    
 
