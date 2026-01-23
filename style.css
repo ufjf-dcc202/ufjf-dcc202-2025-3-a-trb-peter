@@ -75,14 +75,18 @@ main {
     padding: 10px;
 }
 
-.caixa-acoes{ 
+.caixaacoes{ 
     box-sizing: border-box;
     border: 1px solid black;
     column-count: 5;
     
     
 }
-.caixa-acoes img{
+.caixaacoes img{
     height: 5vw;
     width: 5vw; 
+}
+
+#rotaE{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt7IQ2mbMAG4DE8z9PoV6BduaGVbEzZ9g3tw&s");
 }

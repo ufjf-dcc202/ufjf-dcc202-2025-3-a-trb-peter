@@ -82,7 +82,13 @@ const Mapa = {
     
 }
 
-function salE (){ listaAcoes.push("0")}
+function salE (){ 
+    listaAcoes.push("0")
+    caixaAcoes = document.querySelector(".caixaacoes");
+    imgbotE = document.createElement("img");
+    imgbotE.id = "rotaE"
+    caixaAcoes.appendChild(imgbotE);
+}
 function salD(){ listaAcoes.push("1")}
 function salA(){ listaAcoes.push("2")}
 
