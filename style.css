@@ -1,3 +1,7 @@
+body {
+    background-color: rgb(148, 148, 34);
+}
+
 .mapa {
     grid-column-start: 1;
     display: flex;
@@ -5,9 +9,6 @@
     border-width: 1px;
     border-color: black;
     border-radius: 3px;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 20px;
     align-items: center;
     justify-content: center;
     padding: 20px;
@@ -45,13 +46,15 @@
 }
 button{
     margin:10px;
+    height: 7vw;
+    width:7vw;
+    background-size: cover;
+    background-position: center;
 }
 
-button img {
-    height: 10vw;
-    width: 10vw;  
-    
-}
+
+
+
 
 .botoes {
     display: flex;
@@ -88,5 +91,17 @@ main {
 }
 
 #rotaE{
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt7IQ2mbMAG4DE8z9PoV6BduaGVbEzZ9g3tw&s");
+    background-image: url("botaoE.png");
+}
+
+#frente {
+    background-image: url("botaoF.png");
+}
+#rotaD{
+    background-image: url("botaoD.png ");
+}
+
+img{
+        background-size: cover;
+    background-position: center;
 }

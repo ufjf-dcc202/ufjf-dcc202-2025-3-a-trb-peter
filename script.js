@@ -100,7 +100,8 @@ function atualizarPos(){
 function fazerAcoes(){
     for (let i=0; i < listaAcoes.length; i++){
         console.log(i);
-        switch (listaAcoes[i]) {
+        setTimeout(() => {
+             switch (listaAcoes[i]) {
             case "0":
                 Jogador.rotacionarE();
                 break
@@ -111,6 +112,8 @@ function fazerAcoes(){
                 Jogador.andar();
                 break
         }
+        }, i*1000);
+       
 
         
     }
