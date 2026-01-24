@@ -1,33 +1,34 @@
+* {
+    font-family: Impact;
+}
+
 body {
     background-color: rgb(148, 148, 34);
 }
 
+
 .mapa {
     grid-column-start: 1;
+    grid-row-end: 2;
+    
     display: flex;
-    border-style: dashed;
-    border-width: 1px;
-    border-color: black;
-    border-radius: 3px;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-
+    
+    width: 100%;
+    height: 100%;
     
 }
 .area{
     display: grid;
-    grid-template-columns: repeat(5,20%);    
-    
-    height: 40vw;
-    width: 40vw;    
+    grid-template-columns: repeat(5,20%);        
 
 }
 .jogador {
      width: 48px;
     height: 48px;
     background-size: cover;
-    border: 1px black solid;
+    
 }
 
 .celula {
@@ -35,14 +36,13 @@ body {
     height: 48px;
     background-image: url(https://th.bing.com/th/id/OIP.2v--1Tbp7W6Kbfe2IM5wZQHaE8?w=268&h=180&c=7&r=0&o=7&pid=1.7&rm=3);
     background-size: cover;
-    border: 1px black solid;
+    
 }
 .titulo {
     display: flex;
     align-items: center;
     justify-content: center;
-    grid-row-end: 2;
-    grid-column-end: 2;
+    
 }
 button{
     margin:10px;
@@ -60,34 +60,43 @@ button{
     display: flex;
     align-items: center;
     justify-content: center;
-    grid-column-start: 1;
+    grid-column-start: 2;
     padding: 20px;
 }
 
-main {
-    margin: 5px;
-    border: 1px solid black;
+main { 
     display:grid;
-
-
 }
 .acoes{
-    
+    display: block;
     grid-column-start: 2;
-    grid-row-start: 2;
-    padding: 10px;
+    grid-row-start: 1;
+    
 }
+
+
 
 .caixaacoes{ 
     box-sizing: border-box;
-    border: 1px solid black;
+    border:2px solid rgb(255, 0, 0);
+
+    margin: 10px;
+    max-width: 50vw;
+    height:calc(100% - 15px - 2em);   
+    
+    display: flex;
+    flex-flow:wrap;
     column-count: 5;
     
-    
 }
-.caixaacoes img{
-    height: 5vw;
-    width: 5vw; 
+.textoAcoes {
+    margin: 0px;
+    padding: 0px;
+}
+
+.caixaacoes span{
+    height: 10%;
+    width: 5%; 
 }
 
 #rotaE{
@@ -101,7 +110,11 @@ main {
     background-image: url("botaoD.png ");
 }
 
-img{
-        background-size: cover;
+span{
+    background-size: cover;
     background-position: center;
+}
+
+.jogador{
+    background-image: url("jogadorteste.png");
 }

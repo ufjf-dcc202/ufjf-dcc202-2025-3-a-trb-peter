@@ -72,9 +72,10 @@ const Mapa = {
     desenharJogador: function(x,y,anguloAtual){
         Jpos = x + y;
         celulaJogador= document.getElementById(`celula-${Jpos}`);
-        celulaJogador.style.backgroundImage = "url(https://img.freepik.com/fotos-premium/uma-abelha-de-close-up-isolada-em-uma-abelha-de-fundo-branco_1000714-22.jpg)";
-        celulaJogador.style.transform = `rotate(${anguloAtual}deg)`;
-        celulaJogador.classList= "jogador";
+        const imgJogador = document.createElement("span");
+        imgJogador.classList = ("jogador");
+        celulaJogador.appendChild(imgJogador);
+        imgJogador.style.transform = `rotate(${anguloAtual}deg)`;
         if (Jpos == Mapa.checkpoint){
             alert("Voce ganhou!");
         }
@@ -85,12 +86,24 @@ const Mapa = {
 function salE (){ 
     listaAcoes.push("0")
     caixaAcoes = document.querySelector(".caixaacoes");
-    imgbotE = document.createElement("img");
+    imgbotE = document.createElement("span");
     imgbotE.id = "rotaE"
     caixaAcoes.appendChild(imgbotE);
 }
-function salD(){ listaAcoes.push("1")}
-function salA(){ listaAcoes.push("2")}
+function salD(){ 
+    listaAcoes.push("1")
+    caixaAcoes = document.querySelector(".caixaacoes");
+    imgbotD = document.createElement("span");
+    imgbotD.id = "rotaD"
+    caixaAcoes.appendChild(imgbotD);
+}
+function salF(){ 
+    listaAcoes.push("2")
+    caixaAcoes = document.querySelector(".caixaacoes");
+    imgbotF = document.createElement("span");
+    imgbotF.id = "frente"
+    caixaAcoes.appendChild(imgbotF);
+}
 
 function atualizarPos(){
     Mapa.desenharMapa();
@@ -118,6 +131,9 @@ function fazerAcoes(){
         
     }
 }
+function acender(){
+    
+}
 
 
 
@@ -125,9 +141,10 @@ const botrotE = document.getElementById("rotaE");
 botrotE.addEventListener('click', salE);
 const botrotD = document.getElementById("rotaD");
 botrotD.addEventListener('click', salD);
-
 const botAnda = document.getElementById("frente");
-botAnda.addEventListener('click', salA);
+botAnda.addEventListener('click', salF);
+const botAcende = document.getElementById("acende");
+botAcende.addEventListener('click', acender);
 
 // "FUNCAO" principal do codigo
 atualizarPos();
