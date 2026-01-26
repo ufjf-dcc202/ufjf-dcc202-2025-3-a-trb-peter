@@ -6,7 +6,7 @@ const listaAcoes = [];
 const Jogador = {
     y: 0,
     x: 0,
-    anguloAtual: 0,
+    anguloAtual: 90,
    
    
     arrumaAngulo: function(){
@@ -83,45 +83,28 @@ const Mapa = {
     }
     
 }
-function desenharAcoes(){
-    for(let i=0; i<listaAcoes.length; i++){
-        caixaAcoes = document.querySelector(".caixaacoes");
-        switch (listaAcoes[i]){
-            case "0":
-                imgbotE = document.createElement("span");
-                imgbotE.id = "rotaE"
-                caixaAcoes.appendChild(imgbotE);
-                break
-            case  "1":
-                imgbotD = document.createElement("span");
-                imgbotD.id = "rotaD"
-                caixaAcoes.appendChild(imgbotD);
-                break
-            case "2":
-                imgbotF = document.createElement("span");
-                imgbotF.id = "frente"
-                caixaAcoes.appendChild(imgbotF);
-                break
-
-        }
-    }
-}
-
 function salE (){ 
     listaAcoes.push("0");
-    desenharAcoes();
-    
-    
+    caixaAcoes = document.querySelector(".caixaacoes");
+    imgbotE = document.createElement("span");
+    imgbotE.id = "rotaE";
+    caixaAcoes.appendChild(imgbotE);
 }
 function salD(){ 
     listaAcoes.push("1");
-    desenharAcoes();
+    caixaAcoes = document.querySelector(".caixaacoes");
+    imgbotD = document.createElement("span");
+    imgbotD.id = "rotaD";
+    caixaAcoes.appendChild(imgbotD);
     
    
 }
 function salF(){ 
     listaAcoes.push("2");
-    desenharAcoes();
+    caixaAcoes = document.querySelector(".caixaacoes");
+    imgbotF = document.createElement("span");
+    imgbotF.id = "frente";
+    caixaAcoes.appendChild(imgbotF);
 }
 
 function atualizarPos(){
@@ -130,10 +113,17 @@ function atualizarPos(){
 }
 
 function fazerAcoes(){
+    
+    caixaAcoes = document.querySelector(".caixaacoes");
+    
     for (let i=0; i < listaAcoes.length; i++){
         console.log(i);
+        
         setTimeout(() => {
-             switch (listaAcoes[i]) {
+            if (i>=1){
+                spanAnt.style.border = ("0px solid transparent");
+            }
+            switch (listaAcoes[i]) {
             case "0":
                 Jogador.rotacionarE();
                 break
@@ -144,19 +134,29 @@ function fazerAcoes(){
                 Jogador.andar();
                 break
         }
+        spanAtual = caixaAcoes.children[i];
+        spanAtual.style.border = ("solid 2px white");
+        spanAnt = spanAtual;
         }, i*1000);
-       
+        
+        
 
         
     }
+    
 }
 function acender(){
     
 }
 function deletar(){
+    if (listaAcoes.length === 0) {
+        return;
+    }
+    caixaAcoes = document.querySelector(".caixaacoes");
+    ultimoSpan = caixaAcoes.lastElementChild;
     listaAcoes.pop();
-    let caixaAcoes = document.getElementById("caixaacoes");
-    caixaAcoes.lastElementChild.removeChild();
+    caixaAcoes.removeChild(ultimoSpan);
+    
 }
 
 
