@@ -8,6 +8,7 @@ const Jogador = {
     x: 0,
     anguloAtual: 0,
    
+   
     arrumaAngulo: function(){
         if (Jogador.anguloAtual <= -360){
             Jogador.anguloAtual = 0;
@@ -82,27 +83,45 @@ const Mapa = {
     }
     
 }
+function desenharAcoes(){
+    for(let i=0; i<listaAcoes.length; i++){
+        caixaAcoes = document.querySelector(".caixaacoes");
+        switch (listaAcoes[i]){
+            case "0":
+                imgbotE = document.createElement("span");
+                imgbotE.id = "rotaE"
+                caixaAcoes.appendChild(imgbotE);
+                break
+            case  "1":
+                imgbotD = document.createElement("span");
+                imgbotD.id = "rotaD"
+                caixaAcoes.appendChild(imgbotD);
+                break
+            case "2":
+                imgbotF = document.createElement("span");
+                imgbotF.id = "frente"
+                caixaAcoes.appendChild(imgbotF);
+                break
+
+        }
+    }
+}
 
 function salE (){ 
-    listaAcoes.push("0")
-    caixaAcoes = document.querySelector(".caixaacoes");
-    imgbotE = document.createElement("span");
-    imgbotE.id = "rotaE"
-    caixaAcoes.appendChild(imgbotE);
+    listaAcoes.push("0");
+    desenharAcoes();
+    
+    
 }
 function salD(){ 
-    listaAcoes.push("1")
-    caixaAcoes = document.querySelector(".caixaacoes");
-    imgbotD = document.createElement("span");
-    imgbotD.id = "rotaD"
-    caixaAcoes.appendChild(imgbotD);
+    listaAcoes.push("1");
+    desenharAcoes();
+    
+   
 }
 function salF(){ 
-    listaAcoes.push("2")
-    caixaAcoes = document.querySelector(".caixaacoes");
-    imgbotF = document.createElement("span");
-    imgbotF.id = "frente"
-    caixaAcoes.appendChild(imgbotF);
+    listaAcoes.push("2");
+    desenharAcoes();
 }
 
 function atualizarPos(){
@@ -134,6 +153,11 @@ function fazerAcoes(){
 function acender(){
     
 }
+function deletar(){
+    listaAcoes.pop();
+    let caixaAcoes = document.getElementById("caixaacoes");
+    caixaAcoes.lastElementChild.removeChild();
+}
 
 
 
@@ -145,6 +169,10 @@ const botAnda = document.getElementById("frente");
 botAnda.addEventListener('click', salF);
 const botAcende = document.getElementById("acende");
 botAcende.addEventListener('click', acender);
+const botIniciar = document.getElementById("iniciar");
+botIniciar.addEventListener('click', fazerAcoes);
+const botDeletar = document.getElementById("delete");
+botDeletar.addEventListener('click', deletar);
 
 // "FUNCAO" principal do codigo
 atualizarPos();
