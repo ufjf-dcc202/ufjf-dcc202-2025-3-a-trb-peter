@@ -35,9 +35,12 @@ body {
 .celula {
      width: 48px;
     height: 48px;
-    background-image: url(https://th.bing.com/th/id/OIP.2v--1Tbp7W6Kbfe2IM5wZQHaE8?w=268&h=180&c=7&r=0&o=7&pid=1.7&rm=3);
+    background-image: url(fundoteste.png);
     background-size: cover;
     
+}
+.celula.acesa{
+   background-image: url(fundocoloridoteste.png);
 }
 .titulo {
     display: flex;
@@ -102,8 +105,8 @@ main {
 }
 
 .caixaacoes span{
-    height: 10%;
-    width: 5%; 
+    height: 50px;
+    width: 50px; 
 }
 
 #rotaE{

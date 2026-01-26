@@ -1,7 +1,8 @@
 
 const areaMapa = document.querySelector('#area');
-
+let ligado = false;
 const listaAcoes = [];
+const posicoes = [];
 
 const Jogador = {
     y: 0,
@@ -10,8 +11,8 @@ const Jogador = {
    
    
     arrumaAngulo: function(){
-        if (Jogador.anguloAtual <= -360){
-            Jogador.anguloAtual = 0;
+        if (Jogador.anguloAtual < 0){
+            Jogador.anguloAtual +=360;
         }
         else if (Jogador.anguloAtual >=360){
             Jogador.anguloAtual = 0;
@@ -37,13 +38,13 @@ const Jogador = {
     andar: function(){
         angl = Math.abs(Jogador.anguloAtual);
         switch (angl){
-              case 0:
+            case 180:
                 if (Jogador.x+1<= 49) {Jogador.x++};
                 break
             case 90:
                 if (Jogador.y-5>= 0) {Jogador.y-=5};
                 break
-            case 180:
+            case 0:
                 if (Jogador.x-1>=0) {Jogador.x--};
                 break
             case 270:
@@ -51,7 +52,7 @@ const Jogador = {
                 break
             
         }
-        
+        if (ligado) { posicoes.push(Jogador.x + Jogador. y); }
         atualizarPos();
     }
 
@@ -65,14 +66,23 @@ const Mapa = {
         for (let i = 0; i < Mapa.tam; i++) {
                 const celula = document.createElement("span");
                 celula.classList.add("celula");
+                for (let j=0; j < posicoes.length; j++){
+                    if (i === posicoes[j]){
+                        celula.classList.add("acesa");
+                    }
+                }
                 celula.id = `celula-${i}`;
                 areaMapa.appendChild(celula);
         }
+        
         document.getElementById(`celula-${Mapa.checkpoint}`).style.backgroundImage ="url(https://i.pinimg.com/736x/7a/25/27/7a2527042f10403dbbe74146e93640b7.jpg)";
     },
     desenharJogador: function(x,y,anguloAtual){
         Jpos = x + y;
         celulaJogador= document.getElementById(`celula-${Jpos}`);
+        if (ligado) {
+            celulaJogador.style.ba
+        }
         const imgJogador = document.createElement("span");
         imgJogador.classList = ("jogador");
         celulaJogador.appendChild(imgJogador);
@@ -80,6 +90,7 @@ const Mapa = {
         if (Jpos == Mapa.checkpoint){
             alert("Voce ganhou!");
         }
+        
     }
     
 }
@@ -146,7 +157,15 @@ function fazerAcoes(){
     
 }
 function acender(){
-    
+    if (ligado) {
+      ligado = false;
+      //botAcende.style.backgroundImage= url("botaoAcendeLigado.png");
+      botAcende.style.backgroundColor = "white";
+    } else {
+      ligado = true;
+      botAcende.style.backgroundColor = "yellow";
+      posicoes.push(Jogador.x + Jogador. y);
+    }
 }
 function deletar(){
     if (listaAcoes.length === 0) {
@@ -175,4 +194,5 @@ const botDeletar = document.getElementById("delete");
 botDeletar.addEventListener('click', deletar);
 
 // "FUNCAO" principal do codigo
+
 atualizarPos();
