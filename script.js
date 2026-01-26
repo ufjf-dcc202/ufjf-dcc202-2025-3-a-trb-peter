@@ -3,6 +3,7 @@ const areaMapa = document.querySelector('#area');
 let ligado = false;
 const listaAcoes = [];
 const posicoes = [];
+const obstaculos= ["celula-17"];
 
 const Jogador = {
     y: 0,
@@ -70,9 +71,17 @@ const Mapa = {
                     if (i === posicoes[j]){
                         celula.classList.add("acesa");
                     }
+                    
                 }
+                
                 celula.id = `celula-${i}`;
+                for (let k=0; k< obstaculos.length; k++){
+                    if (celula.id === obstaculos[k]) {
+                        celula.classList.add("obstaculo");
+                    }
+                }
                 areaMapa.appendChild(celula);
+                
         }
         
         document.getElementById(`celula-${Mapa.checkpoint}`).style.backgroundImage ="url(https://i.pinimg.com/736x/7a/25/27/7a2527042f10403dbbe74146e93640b7.jpg)";
@@ -117,6 +126,13 @@ function salF(){
     imgbotF.id = "frente";
     caixaAcoes.appendChild(imgbotF);
 }
+function salP(){
+    listaAcoes.push("3");
+    caixaAcoes = document.querySelector(".caixaacoes");
+    imgbotP = document.createElement("span");
+    imgbotP.id = "pular";
+    caixaAcoes.appendChild(imgbotP);
+}
 
 function atualizarPos(){
     Mapa.desenharMapa();
@@ -131,6 +147,12 @@ function fazerAcoes(){
         console.log(i);
         
         setTimeout(() => {
+
+            botIniciar.disabled = true;
+            botAnda.disabled = true;
+            botrotD.disabled = true;
+            botrotE.disabled = true;
+
             if (i>=1){
                 spanAnt.style.border = ("0px solid transparent");
             }
@@ -144,6 +166,8 @@ function fazerAcoes(){
             case "2":
                 Jogador.andar();
                 break
+            case "3":
+                Jogador.pular();
         }
         spanAtual = caixaAcoes.children[i];
         spanAtual.style.border = ("solid 2px white");
@@ -154,6 +178,18 @@ function fazerAcoes(){
 
         
     }
+    setTimeout(() => {
+        botIniciar.disabled = false;
+        botAnda.disabled = false;
+        botrotD.disabled = false;
+        botrotE.disabled = false;
+
+
+        for(let i=0; i<listaAcoes.length; i++){
+            spanAtual = caixaAcoes.children[i];
+            spanAtual.style.border = ("0px solid transparent");
+        }
+    }, listaAcoes.length * 1000);
     
 }
 function acender(){
@@ -186,6 +222,8 @@ const botrotD = document.getElementById("rotaD");
 botrotD.addEventListener('click', salD);
 const botAnda = document.getElementById("frente");
 botAnda.addEventListener('click', salF);
+const botPular = document.getElementById("pular");
+botPular.addEventListener('click', salP);
 const botAcende = document.getElementById("acende");
 botAcende.addEventListener('click', acender);
 const botIniciar = document.getElementById("iniciar");
@@ -193,6 +231,7 @@ botIniciar.addEventListener('click', fazerAcoes);
 const botDeletar = document.getElementById("delete");
 botDeletar.addEventListener('click', deletar);
 
-// "FUNCAO" principal do codigo
 
+
+// "FUNCAO" principal do codigo
 atualizarPos();

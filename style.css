@@ -42,6 +42,12 @@ body {
 .celula.acesa{
    background-image: url(fundocoloridoteste.png);
 }
+.celula.obstaculo.acesa{
+    background-image: url(tijolocoloridoteste.png);
+}
+.celula.obstaculo{
+    background-image: url(tijoloteste.png);
+}
 .titulo {
     display: flex;
     align-items: center;
@@ -118,6 +124,9 @@ main {
 }
 #rotaD{
     background-image: url("botaoD.png ");
+}
+#pular {
+    background-image: url("pularteste.png");
 }
 
 span{
