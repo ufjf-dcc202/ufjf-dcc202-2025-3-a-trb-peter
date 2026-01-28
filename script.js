@@ -2,9 +2,11 @@
 const areaMapa = document.querySelector('#area');
 let ligado = false;
 const listaAcoes = [];
-const posicoes = [];
+const posicoesAcesa = [];
 const obstaculos= ["celula-17"];
 const listaf1 = [];
+const switchf1 = false;
+const switchf2 = false;
 
 const Jogador = {
     y: 0,
@@ -40,6 +42,7 @@ const Jogador = {
     },
     andar: function(){
         angl = Math.abs(Jogador.anguloAtual);
+        
         switch (angl){
             case 180:
                 if (Jogador.x+1<= 49 || Jogador.x+1) {Jogador.x++};
@@ -55,22 +58,22 @@ const Jogador = {
                 break
             
         }
-        if (ligado) { posicoes.push(Jogador.x + Jogador. y); }
+        if (ligado) { posicoesAcesa.push(Jogador.x + Jogador. y); }
         atualizarPos();
     }
 
 }
 const Mapa = {
     tam: 50,
-    checkpoint:47 ,
+    checkpoint:47,
     area: areaMapa,
     desenharMapa: function () {
         areaMapa.innerHTML = "";
         for (let i = 0; i < Mapa.tam; i++) {
                 const celula = document.createElement("span");
                 celula.classList.add("celula");
-                for (let j=0; j < posicoes.length; j++){
-                    if (i === posicoes[j]){
+                for (let j=0; j < posicoesAcesa.length; j++){
+                    if (i === posicoesAcesa[j]){
                         celula.classList.add("acesa");
                     }
                     
@@ -91,9 +94,6 @@ const Mapa = {
     desenharJogador: function(x,y,anguloAtual){
         Jpos = x + y;
         celulaJogador= document.getElementById(`celula-${Jpos}`);
-        if (ligado) {
-            celulaJogador.style.ba
-        }
         const imgJogador = document.createElement("span");
         imgJogador.classList = ("jogador");
         celulaJogador.appendChild(imgJogador);
@@ -106,11 +106,26 @@ const Mapa = {
     
 }
 function salE (){ 
-    listaAcoes.push("0");
-    caixaAcoes = document.querySelector(".caixaacoes");
-    imgbotE = document.createElement("span");
-    imgbotE.id = "rotaE";
-    caixaAcoes.appendChild(imgbotE);
+    if (switchf1) {
+        listaf1.push("0");
+        caixaAcoes = document.querySelector(".caixaacoesf1");
+        imgbotE = document.createElement("span");
+        imgbotE.id = "rotaE";
+        caixaAcoes.appendChild(imgbotE);
+    }else if (switchf2){
+        listaf1.push("0");
+        caixaAcoes = document.querySelector(".caixaacoesf1");
+        imgbotE = document.createElement("span");
+        imgbotE.id = "rotaE";
+        caixaAcoes.appendChild(imgbotE);
+    }else {
+        listaAcoes.push("0");
+        caixaAcoes = document.querySelector(".caixaacoes");
+        imgbotE = document.createElement("span");
+        imgbotE.id = "rotaE";
+        caixaAcoes.appendChild(imgbotE);
+    }
+    
 }
 function salD(){ 
     listaAcoes.push("1");
@@ -206,12 +221,11 @@ function fazerAcoes(variaveisAtuais){
 function acender(){
     if (ligado) {
       ligado = false;
-      //botAcende.style.backgroundImage= url("botaoAcendeLigado.png");
-      botAcende.style.backgroundColor = "white";
+      botAcende.style.backgroundImage= "url(img/botaoacoff.png)";
     } else {
       ligado = true;
-      botAcende.style.backgroundColor = "yellow";
-      posicoes.push(Jogador.x + Jogador. y);
+      botAcende.style.backgroundImage= "url(img/botaoacon.png)";
+      posicoesAcesa.push(Jogador.x + Jogador. y);
     }
 }
 function deletar(){
@@ -222,6 +236,9 @@ function deletar(){
     listaAcoes.pop();
     caixaAcoes.innerHTML = "";
 }
+function pular() {
+    Jogador.z++
+}
 function func1 (){
     listaAcoes.push("4");
     caixaAcoes = document.querySelector(".caixaacoes");
@@ -230,6 +247,7 @@ function func1 (){
     caixaAcoes.appendChild(imgbotf1);
 
 }
+
 
 
 

@@ -3,6 +3,7 @@
 }
 
 
+
 .mapa {
     grid-column-start: 1;
     grid-row-start: 1;
@@ -12,11 +13,11 @@
     align-items: center;
     justify-content: center;
     
-    width: 100%;
-    height: 100%;
+   
     
 }
 .area{
+   
     display: grid;
     grid-template-columns: repeat(5,20%);        
 
@@ -63,8 +64,18 @@ button:hover {
     border: 2px rgb(21, 21, 21) solid;
     border-radius: 2px;
 }
+.divedita {
+    display: flex;
+}
 
+.edita{
+   background-image: url("img/editar.png");
+   background-size: cover;
+   background-position: center;
+   height: 3vw;
+   width:3vw;
 
+}
 
 
 .botoes {
@@ -80,6 +91,8 @@ main {
     display:grid;
     grid-template-rows: repeat(4,25%);
     grid-template-columns: repeat(2,50%);
+     width: 100%;
+    height: 100%;
 }
 .acoes{
     display: block;
@@ -163,6 +176,15 @@ main {
 }
 #f1 {
    background-image: url("img/botaof1.png"); 
+}
+#delete{
+    background-image: url("img/delete.png"); 
+}
+#iniciar{
+    background-image: url("img/botaoiniciar.png"); 
+}
+#acende{
+    background-image:url("img/botaoacoff.png") ;
 }
 
 span{
