@@ -4,10 +4,12 @@ let ligado = false;
 const listaAcoes = [];
 const posicoes = [];
 const obstaculos= ["celula-17"];
+const listaf1 = [];
 
 const Jogador = {
     y: 0,
     x: 0,
+    z:0,
     anguloAtual: 90,
    
    
@@ -40,7 +42,7 @@ const Jogador = {
         angl = Math.abs(Jogador.anguloAtual);
         switch (angl){
             case 180:
-                if (Jogador.x+1<= 49) {Jogador.x++};
+                if (Jogador.x+1<= 49 || Jogador.x+1) {Jogador.x++};
                 break
             case 90:
                 if (Jogador.y-5>= 0) {Jogador.y-=5};
@@ -139,13 +141,20 @@ function atualizarPos(){
     Mapa.desenharJogador(Jogador.x, Jogador.y,Jogador.anguloAtual);
 }
 
-function fazerAcoes(){
+function fazerAcoes(variaveisAtuais){
+    switch (variaveisAtuais){
+        case "1":
+            divacoes = document.querySelector(".caixaacoesf1");
+            arrayacoes = listaf1;
+        default:
+            divacoes = document.querySelector(".caixaacoes");
+            arrayacoes = listaAcoes;
+    }
     
-    caixaAcoes = document.querySelector(".caixaacoes");
-    
-    for (let i=0; i < listaAcoes.length; i++){
+    for (let i=0; i < arrayacoes.length; i++){
         console.log(i);
         
+
         setTimeout(() => {
 
             botIniciar.disabled = true;
@@ -168,8 +177,10 @@ function fazerAcoes(){
                 break
             case "3":
                 Jogador.pular();
+            // case "4":
+            //     fazerAcoes(document.querySelector("f1", listaf1);
         }
-        spanAtual = caixaAcoes.children[i];
+        spanAtual = divacoes.children[i];
         spanAtual.style.border = ("solid 2px white");
         spanAnt = spanAtual;
         }, i*1000);
@@ -185,8 +196,8 @@ function fazerAcoes(){
         botrotE.disabled = false;
 
 
-        for(let i=0; i<listaAcoes.length; i++){
-            spanAtual = caixaAcoes.children[i];
+        for(let i=0; i<arrayacoes.length; i++){
+            spanAtual = divacoes.children[i];
             spanAtual.style.border = ("0px solid transparent");
         }
     }, listaAcoes.length * 1000);
@@ -208,10 +219,16 @@ function deletar(){
         return;
     }
     caixaAcoes = document.querySelector(".caixaacoes");
-    ultimoSpan = caixaAcoes.lastElementChild;
     listaAcoes.pop();
-    caixaAcoes.removeChild(ultimoSpan);
-    
+    caixaAcoes.innerHTML = "";
+}
+function func1 (){
+    listaAcoes.push("4");
+    caixaAcoes = document.querySelector(".caixaacoes");
+    imgbotf1 = document.createElement("span");
+    imgbotf1.id = "f1";
+    caixaAcoes.appendChild(imgbotf1);
+
 }
 
 
@@ -230,7 +247,8 @@ const botIniciar = document.getElementById("iniciar");
 botIniciar.addEventListener('click', fazerAcoes);
 const botDeletar = document.getElementById("delete");
 botDeletar.addEventListener('click', deletar);
-
+const botF1 = document.getElementById("f1");
+botF1.addEventListener('click', func1);
 
 
 // "FUNCAO" principal do codigo

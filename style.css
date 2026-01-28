@@ -3,14 +3,10 @@
 }
 
 
-body {
-    background-color: rgb(148, 148, 34);
-}
-
-
 .mapa {
     grid-column-start: 1;
-    grid-row-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 4;
     
     display: flex;
     align-items: center;
@@ -35,18 +31,18 @@ body {
 .celula {
      width: 48px;
     height: 48px;
-    background-image: url(fundoteste.png);
+    background-image: url(img/fundoteste.png);
     background-size: cover;
     
 }
 .celula.acesa{
-   background-image: url(fundocoloridoteste.png);
+   background-image: url(img/fundocoloridoteste.png);
 }
 .celula.obstaculo.acesa{
-    background-image: url(tijolocoloridoteste.png);
+    background-image: url(img/murocolorido.png);
 }
 .celula.obstaculo{
-    background-image: url(tijoloteste.png);
+    background-image: url(img/muro.jpg);
 }
 .titulo {
     display: flex;
@@ -61,6 +57,7 @@ button{
     width:7vw;
     background-size: cover;
     background-position: center;
+    box-shadow: 1px 1px 10px black ;
 }
 button:hover {
     border: 2px rgb(21, 21, 21) solid;
@@ -75,11 +72,14 @@ button:hover {
     align-items: center;
     justify-content: center;
     grid-column-start: 2;
+    grid-row-start: 4;
     padding: 20px;
 }
 
 main { 
     display:grid;
+    grid-template-rows: repeat(4,25%);
+    grid-template-columns: repeat(2,50%);
 }
 .acoes{
     display: block;
@@ -103,7 +103,40 @@ main {
     display: flex;
     flex-flow:wrap;
     column-count: 5;
+    box-shadow: 3px 3px 10px black ;
     
+}
+.caixaacoesf1{
+    box-sizing: border-box;
+    border:2px solid rgb(21, 21, 21);
+    border-radius: 10px;
+    padding: 3px;
+
+    margin: 10px;
+    max-width: 100%;
+    height:calc(50% - 15px - 2em);   
+    
+    display: flex;
+    flex-flow:wrap;
+    column-count: 5;
+    box-shadow: 3px 3px 10px black ;
+    background-color: rgb(61, 129, 188);
+}
+.caixaacoesf2{
+    box-sizing: border-box;
+    border:2px solid rgb(21, 21, 21);
+    border-radius: 10px;
+    padding: 3px;
+
+    margin: 10px;
+    max-width: 100%;
+    height:calc(50% - 15px - 2em);   
+    
+    display: flex;
+    flex-flow:wrap;
+    column-count: 5;
+    box-shadow: 3px 3px 10px black ;
+    background-color: rgb(61, 129, 188);
 }
 .textoAcoes {
     margin: 0px;
@@ -116,17 +149,20 @@ main {
 }
 
 #rotaE{
-    background-image: url("botaoE.png");
+    background-image: url("img/botaoE.png");
 }
 
 #frente {
-    background-image: url("botaoF.png");
+    background-image: url("img/botaoF.png");
 }
 #rotaD{
-    background-image: url("botaoD.png ");
+    background-image: url("img/botaoD.png ");
 }
 #pular {
-    background-image: url("pularteste.png");
+    background-image: url("img/pularteste.png");
+}
+#f1 {
+   background-image: url("img/botaof1.png"); 
 }
 
 span{
@@ -138,5 +174,5 @@ span{
     display: flex;
     height: 100%;
     width: 100%;
-    background-image: url("jogadorteste.png");
+    background-image: url("img/jogadorteste.png");
 }
