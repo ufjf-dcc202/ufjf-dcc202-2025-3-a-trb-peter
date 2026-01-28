@@ -1,12 +1,13 @@
 
 const areaMapa = document.querySelector('#area');
 let ligado = false;
+let switchf1 = false;
+let switchf2 = false;
+
 const listaAcoes = [];
 const posicoesAcesa = [];
 const obstaculos= ["celula-17"];
 const listaf1 = [];
-const switchf1 = false;
-const switchf2 = false;
 
 const Jogador = {
     y: 0,
@@ -247,6 +248,21 @@ function func1 (){
     caixaAcoes.appendChild(imgbotf1);
 
 }
+function editaf1(){
+    fundof1 = document.querySelector(".caixaacoesf1");
+    if (switchf1){
+        switchf1=false;
+        botEditaf1.style.backgroundImage = "url(img/editar.png)"
+        botEditaf2.disabled = true;
+        fundof1.style.backgroundColor = "rgb(61, 129, 188)";
+    }else {
+        switchf1 = true;
+        botEditaf1.style.backgroundImage = "url(img/editaron.png)"
+       
+        fundof1.style.backgroundColor ="lightblue";
+    }
+
+}
 
 
 
@@ -267,6 +283,10 @@ const botDeletar = document.getElementById("delete");
 botDeletar.addEventListener('click', deletar);
 const botF1 = document.getElementById("f1");
 botF1.addEventListener('click', func1);
+const botEditaf1 = document.getElementById("editarf1");
+botEditaf1.addEventListener('click', editaf1);
+const botEditaf2 = document.getElementById("editarf2");
+botEditaf2.addEventListener('click', editaf1);
 
 
 // "FUNCAO" principal do codigo
