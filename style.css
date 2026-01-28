@@ -74,6 +74,10 @@ button:hover {
    background-position: center;
    height: 3vw;
    width:3vw;
+   padding: 0;
+  
+   margin: 0;
+    margin-left: 5px;
 
 }
 
@@ -127,7 +131,7 @@ main {
 
     margin: 10px;
     max-width: 100%;
-    height:calc(75% - 15px - 2em);   
+    height:calc(100% - 15px - 2em);   
     
     display: flex;
     flex-flow:wrap;
@@ -143,7 +147,7 @@ main {
 
     margin: 10px;
     max-width: 100%;
-    height:calc(50% - 15px - 2em);   
+    height:calc(100% - 15px - 2em);   
     
     display: flex;
     flex-flow:wrap;
@@ -161,6 +165,10 @@ main {
     width: 50px; 
 }
 .caixaacoesf1 span{
+    height: 50px;
+    width: 50px; 
+}
+.caixaacoesf2 span{
     height: 50px;
     width: 50px; 
 }

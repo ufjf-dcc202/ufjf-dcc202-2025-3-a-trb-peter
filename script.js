@@ -8,6 +8,7 @@ const listaAcoes = [];
 const posicoesAcesa = [];
 const obstaculos= [17,18,16,19];
 const listaf1 = [];
+const listaf2 = [];
 
 const Jogador = {
     y: 0,
@@ -135,8 +136,8 @@ function salE (){
         imgbotE.id = "rotaE";
         caixaAcoes.appendChild(imgbotE);
     }else if (switchf2){
-        listaf1.push("0");
-        caixaAcoes = document.querySelector(".caixaacoesf1");
+        listaf2.push("0");
+        caixaAcoes = document.querySelector(".caixaacoesf2");
         imgbotE = document.createElement("span");
         imgbotE.id = "rotaE";
         caixaAcoes.appendChild(imgbotE);
@@ -149,45 +150,78 @@ function salE (){
     }
     
 }
-function salD(){
+function salD (){ 
     if (switchf1) {
         listaf1.push("1");
         caixaAcoes = document.querySelector(".caixaacoesf1");
         imgbotD = document.createElement("span");
         imgbotD.id = "rotaD";
         caixaAcoes.appendChild(imgbotD);
-    } else if(switchf2) {
+
+    } else if (switchf2){
+        listaf2.push("1");
+        caixaAcoes = document.querySelector(".caixaacoesf2");
+        imgbotD = document.createElement("span");
+        imgbotD.id = "rotaD";
+        caixaAcoes.appendChild(imgbotD);
+
+    } else {
         listaAcoes.push("1");
         caixaAcoes = document.querySelector(".caixaacoes");
         imgbotD = document.createElement("span");
         imgbotD.id = "rotaD";
         caixaAcoes.appendChild(imgbotD);
     }
-    else{
-        listaAcoes.push("1");
+}
+
+function salF (){ 
+    if (switchf1) {
+        listaf1.push("2");
+        caixaAcoes = document.querySelector(".caixaacoesf1");
+        imgbotF = document.createElement("span");
+        imgbotF.id = "frente";
+        caixaAcoes.appendChild(imgbotF);
+
+    } else if (switchf2){
+        listaf2.push("2");
+        caixaAcoes = document.querySelector(".caixaacoesf2");
+        imgbotF = document.createElement("span");
+        imgbotF.id = "frente";
+        caixaAcoes.appendChild(imgbotF);
+
+    } else {
+        listaAcoes.push("2");
         caixaAcoes = document.querySelector(".caixaacoes");
-        imgbotD = document.createElement("span");
-        imgbotD.id = "rotaD";
-        caixaAcoes.appendChild(imgbotD);
+        imgbotF = document.createElement("span");
+        imgbotF.id = "frente";
+        caixaAcoes.appendChild(imgbotF);
     }
-    
-    
-   
 }
-function salF(){ 
-    listaAcoes.push("2");
-    caixaAcoes = document.querySelector(".caixaacoes");
-    imgbotF = document.createElement("span");
-    imgbotF.id = "frente";
-    caixaAcoes.appendChild(imgbotF);
+
+function salP (){ 
+    if (switchf1) {
+        listaf1.push("3");
+        caixaAcoes = document.querySelector(".caixaacoesf1");
+        imgbotP = document.createElement("span");
+        imgbotP.id = "pular";
+        caixaAcoes.appendChild(imgbotP);
+
+    } else if (switchf2){
+        listaf2.push("3");
+        caixaAcoes = document.querySelector(".caixaacoesf2");
+        imgbotP = document.createElement("span");
+        imgbotP.id = "pular";
+        caixaAcoes.appendChild(imgbotP);
+
+    } else {
+        listaAcoes.push("3");
+        caixaAcoes = document.querySelector(".caixaacoes");
+        imgbotP = document.createElement("span");
+        imgbotP.id = "pular";
+        caixaAcoes.appendChild(imgbotP);
+    }
 }
-function salP(){
-    listaAcoes.push("3");
-    caixaAcoes = document.querySelector(".caixaacoes");
-    imgbotP = document.createElement("span");
-    imgbotP.id = "pular";
-    caixaAcoes.appendChild(imgbotP);
-}
+
 
 function atualizarPos(){
     Mapa.desenharMapa();
