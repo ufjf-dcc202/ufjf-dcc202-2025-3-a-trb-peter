@@ -127,7 +127,7 @@ main {
 
     margin: 10px;
     max-width: 100%;
-    height:calc(50% - 15px - 2em);   
+    height:calc(75% - 15px - 2em);   
     
     display: flex;
     flex-flow:wrap;
@@ -157,6 +157,10 @@ main {
 }
 
 .caixaacoes span{
+    height: 50px;
+    width: 50px; 
+}
+.caixaacoesf1 span{
     height: 50px;
     width: 50px; 
 }

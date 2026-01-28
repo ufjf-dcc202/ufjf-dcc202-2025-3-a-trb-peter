@@ -6,7 +6,7 @@ let switchf2 = false;
 
 const listaAcoes = [];
 const posicoesAcesa = [];
-const obstaculos= ["celula-17"];
+const obstaculos= [17,18,16,19];
 const listaf1 = [];
 
 const Jogador = {
@@ -41,8 +41,16 @@ const Jogador = {
         celulaJogador.style.transform = `rotate(${Jogador.anguloAtual}deg)`;
         console.log(Jogador.anguloAtual);
     },
+    pular: function(){
+        Jogador.z +=1;
+        Jogador.andar();
+        Jogador.z -=1; 
+
+    },
     andar: function(){
+        colisao = false;
         angl = Math.abs(Jogador.anguloAtual);
+        posInicial = [Jogador.x,Jogador.y];
         
         switch (angl){
             case 180:
@@ -58,9 +66,22 @@ const Jogador = {
                 if (Jogador.y+5<=49) {Jogador.y+=5};
                 break
             
+            
         }
-        if (ligado) { posicoesAcesa.push(Jogador.x + Jogador. y); }
-        atualizarPos();
+        for (let i=0; i<obstaculos.length; i++){
+            if (Jogador.x + Jogador.y === obstaculos[i] && Jogador.z===0){
+                colisao = true;
+            }
+        }
+        if (colisao) {
+            Jogador.x = posInicial[0];
+            Jogador.y = posInicial[1];
+        }
+        if (!colisao) {
+            if (ligado) { posicoesAcesa.push(Jogador.x + Jogador.y); }
+            atualizarPos();
+        }
+        
     }
 
 }
@@ -82,7 +103,7 @@ const Mapa = {
                 
                 celula.id = `celula-${i}`;
                 for (let k=0; k< obstaculos.length; k++){
-                    if (celula.id === obstaculos[k]) {
+                    if (i === obstaculos[k]) {
                         celula.classList.add("obstaculo");
                     }
                 }
@@ -128,12 +149,28 @@ function salE (){
     }
     
 }
-function salD(){ 
-    listaAcoes.push("1");
-    caixaAcoes = document.querySelector(".caixaacoes");
-    imgbotD = document.createElement("span");
-    imgbotD.id = "rotaD";
-    caixaAcoes.appendChild(imgbotD);
+function salD(){
+    if (switchf1) {
+        listaf1.push("1");
+        caixaAcoes = document.querySelector(".caixaacoesf1");
+        imgbotD = document.createElement("span");
+        imgbotD.id = "rotaD";
+        caixaAcoes.appendChild(imgbotD);
+    } else if(switchf2) {
+        listaAcoes.push("1");
+        caixaAcoes = document.querySelector(".caixaacoes");
+        imgbotD = document.createElement("span");
+        imgbotD.id = "rotaD";
+        caixaAcoes.appendChild(imgbotD);
+    }
+    else{
+        listaAcoes.push("1");
+        caixaAcoes = document.querySelector(".caixaacoes");
+        imgbotD = document.createElement("span");
+        imgbotD.id = "rotaD";
+        caixaAcoes.appendChild(imgbotD);
+    }
+    
     
    
 }
@@ -157,14 +194,16 @@ function atualizarPos(){
     Mapa.desenharJogador(Jogador.x, Jogador.y,Jogador.anguloAtual);
 }
 
-function fazerAcoes(variaveisAtuais){
-    switch (variaveisAtuais){
+function fazerAcoes(caixaatual){
+    switch (caixaatual){
         case "1":
             divacoes = document.querySelector(".caixaacoesf1");
             arrayacoes = listaf1;
+            break;
         default:
             divacoes = document.querySelector(".caixaacoes");
             arrayacoes = listaAcoes;
+            break;
     }
     
     for (let i=0; i < arrayacoes.length; i++){
@@ -181,24 +220,29 @@ function fazerAcoes(variaveisAtuais){
             if (i>=1){
                 spanAnt.style.border = ("0px solid transparent");
             }
-            switch (listaAcoes[i]) {
+            switch (arrayacoes[i]) {
             case "0":
                 Jogador.rotacionarE();
-                break
+                break;
             case "1":
                 Jogador.rotacionarD();
-                break
+                break;
             case "2":
                 Jogador.andar();
-                break
+                break;
             case "3":
                 Jogador.pular();
-            // case "4":
-            //     fazerAcoes(document.querySelector("f1", listaf1);
+                break;
+            case "4":
+                fazerAcoes("1");
+                break;
         }
-        spanAtual = divacoes.children[i];
-        spanAtual.style.border = ("solid 2px white");
-        spanAnt = spanAtual;
+        if (divacoes.children[i] != null) {
+            spanAtual = divacoes.children[i];
+            spanAtual.style.border = ("solid 2px red");
+            spanAnt = spanAtual;
+        }
+        
         }, i*1000);
         
         
@@ -234,7 +278,8 @@ function deletar(){
         return;
     }
     caixaAcoes = document.querySelector(".caixaacoes");
-    listaAcoes.pop();
+
+    listaAcoes.splice(0, listaAcoes.length);
     caixaAcoes.innerHTML = "";
 }
 function pular() {
@@ -253,7 +298,6 @@ function editaf1(){
     if (switchf1){
         switchf1=false;
         botEditaf1.style.backgroundImage = "url(img/editar.png)"
-        botEditaf2.disabled = true;
         fundof1.style.backgroundColor = "rgb(61, 129, 188)";
     }else {
         switchf1 = true;
@@ -263,9 +307,19 @@ function editaf1(){
     }
 
 }
+function editaf2(){
+    fundof2 = document.querySelector(".caixaacoesf2");
+    if (switchf2){
+        switchf2=false;
+        botEditaf2.style.backgroundImage = "url(img/editar.png)"
+        fundof2.style.backgroundColor = "rgb(61, 129, 188)";
+    }else {
+        switchf2 = true;
+        botEditaf2.style.backgroundImage = "url(img/editaron.png)"
+        fundof2.style.backgroundColor ="lightblue";
+    }
 
-
-
+}
 
 const botrotE = document.getElementById("rotaE");
 botrotE.addEventListener('click', salE);
@@ -286,7 +340,7 @@ botF1.addEventListener('click', func1);
 const botEditaf1 = document.getElementById("editarf1");
 botEditaf1.addEventListener('click', editaf1);
 const botEditaf2 = document.getElementById("editarf2");
-botEditaf2.addEventListener('click', editaf1);
+botEditaf2.addEventListener('click', editaf2);
 
 
 // "FUNCAO" principal do codigo
