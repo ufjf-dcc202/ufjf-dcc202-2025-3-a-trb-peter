@@ -4,11 +4,11 @@ let ligado = false;
 let switchf1 = false;
 let switchf2 = false;
 
-const listaAcoes = [];
+const listaAcoes = [[],[]];
 const posicoesAcesa = [];
 const obstaculos= [17,18,16,19];
-const listaf1 = [];
-const listaf2 = [];
+const listaf1 = [[],[]];
+const listaf2 = [[],[]];
 
 const Jogador = {
     y: 0,
@@ -130,7 +130,7 @@ const Mapa = {
 }
 function salE (){ 
     if (switchf1) {
-        listaf1.push("0");
+        listaf1[0].push("0");
         caixaAcoes = document.querySelector(".caixaacoesf1");
         imgbotE = document.createElement("span");
         imgbotE.id = "rotaE";
@@ -142,7 +142,7 @@ function salE (){
         imgbotE.id = "rotaE";
         caixaAcoes.appendChild(imgbotE);
     }else {
-        listaAcoes.push("0");
+        listaAcoes[0].push("0");
         caixaAcoes = document.querySelector(".caixaacoes");
         imgbotE = document.createElement("span");
         imgbotE.id = "rotaE";
@@ -152,7 +152,7 @@ function salE (){
 }
 function salD (){ 
     if (switchf1) {
-        listaf1.push("1");
+        listaf1[0].push("1");
         caixaAcoes = document.querySelector(".caixaacoesf1");
         imgbotD = document.createElement("span");
         imgbotD.id = "rotaD";
@@ -166,7 +166,7 @@ function salD (){
         caixaAcoes.appendChild(imgbotD);
 
     } else {
-        listaAcoes.push("1");
+        listaAcoes[0].push("1");
         caixaAcoes = document.querySelector(".caixaacoes");
         imgbotD = document.createElement("span");
         imgbotD.id = "rotaD";
@@ -176,7 +176,7 @@ function salD (){
 
 function salF (){ 
     if (switchf1) {
-        listaf1.push("2");
+        listaf1[0].push("2");
         caixaAcoes = document.querySelector(".caixaacoesf1");
         imgbotF = document.createElement("span");
         imgbotF.id = "frente";
@@ -190,7 +190,7 @@ function salF (){
         caixaAcoes.appendChild(imgbotF);
 
     } else {
-        listaAcoes.push("2");
+        listaAcoes[0].push("2");
         caixaAcoes = document.querySelector(".caixaacoes");
         imgbotF = document.createElement("span");
         imgbotF.id = "frente";
@@ -200,7 +200,7 @@ function salF (){
 
 function salP (){ 
     if (switchf1) {
-        listaf1.push("3");
+        listaf1[0].push("3");
         caixaAcoes = document.querySelector(".caixaacoesf1");
         imgbotP = document.createElement("span");
         imgbotP.id = "pular";
@@ -214,7 +214,7 @@ function salP (){
         caixaAcoes.appendChild(imgbotP);
 
     } else {
-        listaAcoes.push("3");
+        listaAcoes[0].push("3");
         caixaAcoes = document.querySelector(".caixaacoes");
         imgbotP = document.createElement("span");
         imgbotP.id = "pular";
@@ -227,74 +227,104 @@ function atualizarPos(){
     Mapa.desenharMapa();
     Mapa.desenharJogador(Jogador.x, Jogador.y,Jogador.anguloAtual);
 }
-
-function fazerAcoes(caixaatual){
-    switch (caixaatual){
-        case "1":
-            divacoes = document.querySelector(".caixaacoesf1");
-            arrayacoes = listaf1;
-            break;
-        default:
-            divacoes = document.querySelector(".caixaacoes");
-            arrayacoes = listaAcoes;
-            break;
-    }
-    
-    for (let i=0; i < arrayacoes.length; i++){
-        console.log(i);
-        
-
-        setTimeout(() => {
-
-            botIniciar.disabled = true;
-            botAnda.disabled = true;
-            botrotD.disabled = true;
-            botrotE.disabled = true;
-
-            if (i>=1){
-                spanAnt.style.border = ("0px solid transparent");
-            }
-            switch (arrayacoes[i]) {
-            case "0":
-                Jogador.rotacionarE();
-                break;
-            case "1":
-                Jogador.rotacionarD();
-                break;
-            case "2":
-                Jogador.andar();
-                break;
-            case "3":
-                Jogador.pular();
-                break;
-            case "4":
-                fazerAcoes("1");
-                break;
-        }
-        if (divacoes.children[i] != null) {
-            spanAtual = divacoes.children[i];
-            spanAtual.style.border = ("solid 2px red");
-            spanAnt = spanAtual;
-        }
-        
-        }, i*1000);
-        
-        
-
-        
-    }
+function fazAcao(arrayacao, indice){
     setTimeout(() => {
-        botIniciar.disabled = false;
-        botAnda.disabled = false;
-        botrotD.disabled = false;
-        botrotE.disabled = false;
-
-
-        for(let i=0; i<arrayacoes.length; i++){
-            spanAtual = divacoes.children[i];
-            spanAtual.style.border = ("0px solid transparent");
+        if (indice>= arrayacao[0].length){
+            botIniciar.disabled = false;
+            botAnda.disabled = false;
+            botrotD.disabled = false;
+            botrotE.disabled = false;
+            botDeletar.disabled = false;
+            return;
         }
-    }, listaAcoes.length * 1000);
+        botIniciar.disabled = true;
+        botAnda.disabled = true;
+        botrotD.disabled = true;
+        botrotE.disabled = true;
+        botDeletar.disabled = true;
+        acao = arrayacao[0][indice];
+        switch (acao) {
+                case "0":
+                    Jogador.rotacionarE();
+                    break;
+                case "1":
+                    Jogador.rotacionarD();
+                    break;
+                case "2":
+                    Jogador.andar();
+                    break;
+                case "3":
+                    Jogador.pular();
+                    break;        
+                case "4":
+                    arrayacao[0].splice(indice + 1, 0,...listaf1[0]);
+                    break;
+            
+            }
+            indice++;
+            
+            fazAcao(arrayacao, indice);
+    }, 1000);
+    
+       
+}
+
+function fazerAcoes(){
+      
+    divacoes = document.querySelector(".caixaacoes");
+    arrayacoes = listaAcoes;
+    indiceA = 0;
+
+    fazAcao(listaAcoes,indiceA);
+    // setTimeout(() => {
+    //     console.log(i);
+    //        
+
+    //         // if (i>=1){
+    //         //     spanAnt.style.border = ("0px solid transparent");
+    //         // }
+    //         switch (arrayacoes[i]) {
+    //         case "0":
+    //             Jogador.rotacionarE();
+    //             break;
+    //         case "1":
+    //             Jogador.rotacionarD();
+    //             break;
+    //         case "2":
+    //             Jogador.andar();
+    //             break;
+    //         case "3":
+    //             Jogador.pular();
+    //             break;
+    //         case "4":
+    //             arrayacoes.splice(indiceF1 + 1, 0,...listaf1);
+    //             break;
+            
+    //     }
+    //     // if (divacoes.children[i] != null) {
+    //     //     spanAtual = divacoes.children[i];
+    //     //     spanAtual.style.border = ("solid 2px red");
+    //     //     spanAnt = spanAtual;
+    //     // }
+        
+    //     }, i*1000);
+        
+        
+
+        
+    // }
+    // setTimeout(() => {
+    //     botIniciar.disabled = false;
+    //     botAnda.disabled = false;
+    //     botrotD.disabled = false;
+    //     botrotE.disabled = false;
+
+
+    //     // for(let i=0; i<arrayacoes.length; i++){
+    //     //     spanAtual = divacoes.children[i];
+    //     //     spanAtual.style.border = ("0px solid transparent");
+    //     // }
+    // }, arrayacoes.length * 1000);
     
 }
 function acender(){
@@ -308,19 +338,16 @@ function acender(){
     }
 }
 function deletar(){
-    if (listaAcoes.length === 0) {
+    if (listaAcoes[0].length === 0) {
         return;
     }
     caixaAcoes = document.querySelector(".caixaacoes");
 
-    listaAcoes.splice(0, listaAcoes.length);
+    listaAcoes[0].splice(0, listaAcoes.length);
     caixaAcoes.innerHTML = "";
 }
-function pular() {
-    Jogador.z++
-}
 function func1 (){
-    listaAcoes.push("4");
+    listaAcoes[0].push("4");
     caixaAcoes = document.querySelector(".caixaacoes");
     imgbotf1 = document.createElement("span");
     imgbotf1.id = "f1";

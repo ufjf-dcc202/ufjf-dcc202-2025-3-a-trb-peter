@@ -54,8 +54,8 @@
 button{
     border :solid transparent 0px;
     margin:10px;
-    height: 7vw;
-    width:7vw;
+    height: 7vh;
+    width:7vh;
     background-size: cover;
     background-position: center;
     box-shadow: 1px 1px 10px black ;
