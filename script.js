@@ -128,100 +128,32 @@ const Mapa = {
     }
     
 }
-function salE (){ 
-    if (switchf1) {
-        listaf1[0].push("0");
-        caixaAcoes = document.querySelector(".caixaacoesf1");
-        imgbotE = document.createElement("span");
-        imgbotE.id = "rotaE";
-        caixaAcoes.appendChild(imgbotE);
-    }else if (switchf2){
-        listaf2.push("0");
-        caixaAcoes = document.querySelector(".caixaacoesf2");
-        imgbotE = document.createElement("span");
-        imgbotE.id = "rotaE";
-        caixaAcoes.appendChild(imgbotE);
-    }else {
-        listaAcoes[0].push("0");
-        caixaAcoes = document.querySelector(".caixaacoes");
-        imgbotE = document.createElement("span");
-        imgbotE.id = "rotaE";
-        caixaAcoes.appendChild(imgbotE);
-    }
+function AdicionarAcao(nAcao, idAcao,funcao){
     
-}
-function salD (){ 
-    if (switchf1) {
-        listaf1[0].push("1");
+    if (switchf1){
+        listaf1[0].push(nAcao);
         caixaAcoes = document.querySelector(".caixaacoesf1");
-        imgbotD = document.createElement("span");
-        imgbotD.id = "rotaD";
-        caixaAcoes.appendChild(imgbotD);
-
-    } else if (switchf2){
-        listaf2.push("1");
-        caixaAcoes = document.querySelector(".caixaacoesf2");
-        imgbotD = document.createElement("span");
-        imgbotD.id = "rotaD";
-        caixaAcoes.appendChild(imgbotD);
-
-    } else {
-        listaAcoes[0].push("1");
-        caixaAcoes = document.querySelector(".caixaacoes");
-        imgbotD = document.createElement("span");
-        imgbotD.id = "rotaD";
-        caixaAcoes.appendChild(imgbotD);
+        span = document.createElement("span");
+        span.id = idAcao;
+        caixaAcoes.appendChild(span);
+        
     }
-}
-
-function salF (){ 
-    if (switchf1) {
-        listaf1[0].push("2");
-        caixaAcoes = document.querySelector(".caixaacoesf1");
-        imgbotF = document.createElement("span");
-        imgbotF.id = "frente";
-        caixaAcoes.appendChild(imgbotF);
-
-    } else if (switchf2){
-        listaf2.push("2");
+    else if (switchf2){
+        listaf2[0].push(nAcao);
         caixaAcoes = document.querySelector(".caixaacoesf2");
-        imgbotF = document.createElement("span");
-        imgbotF.id = "frente";
-        caixaAcoes.appendChild(imgbotF);
-
-    } else {
-        listaAcoes[0].push("2");
+        span = document.createElement("span");
+        span.id = idAcao;
+        caixaAcoes.appendChild(span);
+        
+    }else{
+        listaAcoes[0].push(nAcao);
         caixaAcoes = document.querySelector(".caixaacoes");
-        imgbotF = document.createElement("span");
-        imgbotF.id = "frente";
-        caixaAcoes.appendChild(imgbotF);
+        span = document.createElement("span");
+        span.id = idAcao;
+        caixaAcoes.appendChild(span);
     }
+
 }
-
-function salP (){ 
-    if (switchf1) {
-        listaf1[0].push("3");
-        caixaAcoes = document.querySelector(".caixaacoesf1");
-        imgbotP = document.createElement("span");
-        imgbotP.id = "pular";
-        caixaAcoes.appendChild(imgbotP);
-
-    } else if (switchf2){
-        listaf2.push("3");
-        caixaAcoes = document.querySelector(".caixaacoesf2");
-        imgbotP = document.createElement("span");
-        imgbotP.id = "pular";
-        caixaAcoes.appendChild(imgbotP);
-
-    } else {
-        listaAcoes[0].push("3");
-        caixaAcoes = document.querySelector(".caixaacoes");
-        imgbotP = document.createElement("span");
-        imgbotP.id = "pular";
-        caixaAcoes.appendChild(imgbotP);
-    }
-}
-
 
 function atualizarPos(){
     Mapa.desenharMapa();
@@ -276,56 +208,6 @@ function fazerAcoes(){
     indiceA = 0;
 
     fazAcao(listaAcoes,indiceA);
-    // setTimeout(() => {
-    //     console.log(i);
-    //        
-
-    //         // if (i>=1){
-    //         //     spanAnt.style.border = ("0px solid transparent");
-    //         // }
-    //         switch (arrayacoes[i]) {
-    //         case "0":
-    //             Jogador.rotacionarE();
-    //             break;
-    //         case "1":
-    //             Jogador.rotacionarD();
-    //             break;
-    //         case "2":
-    //             Jogador.andar();
-    //             break;
-    //         case "3":
-    //             Jogador.pular();
-    //             break;
-    //         case "4":
-    //             arrayacoes.splice(indiceF1 + 1, 0,...listaf1);
-    //             break;
-            
-    //     }
-    //     // if (divacoes.children[i] != null) {
-    //     //     spanAtual = divacoes.children[i];
-    //     //     spanAtual.style.border = ("solid 2px red");
-    //     //     spanAnt = spanAtual;
-    //     // }
-        
-    //     }, i*1000);
-        
-        
-
-        
-    // }
-    // setTimeout(() => {
-    //     botIniciar.disabled = false;
-    //     botAnda.disabled = false;
-    //     botrotD.disabled = false;
-    //     botrotE.disabled = false;
-
-
-    //     // for(let i=0; i<arrayacoes.length; i++){
-    //     //     spanAtual = divacoes.children[i];
-    //     //     spanAtual.style.border = ("0px solid transparent");
-    //     // }
-    // }, arrayacoes.length * 1000);
-    
 }
 function acender(){
     if (ligado) {
@@ -383,25 +265,35 @@ function editaf2(){
 }
 
 const botrotE = document.getElementById("rotaE");
-botrotE.addEventListener('click', salE);
+botrotE.addEventListener('click', () => AdicionarAcao("0", botrotE.id));
+
 const botrotD = document.getElementById("rotaD");
-botrotD.addEventListener('click', salD);
+botrotD.addEventListener('click', () => AdicionarAcao("1", botrotD.id));
+
 const botAnda = document.getElementById("frente");
-botAnda.addEventListener('click', salF);
+botAnda.addEventListener('click', () => AdicionarAcao("2", botAnda.id));
+
 const botPular = document.getElementById("pular");
-botPular.addEventListener('click', salP);
+botPular.addEventListener('click', () => AdicionarAcao("3", botPular.id));
+
 const botAcende = document.getElementById("acende");
-botAcende.addEventListener('click', acender);
+botAcende.addEventListener('click', () => acender());
+
 const botIniciar = document.getElementById("iniciar");
-botIniciar.addEventListener('click', fazerAcoes);
+botIniciar.addEventListener('click', () => fazerAcoes());
+
 const botDeletar = document.getElementById("delete");
-botDeletar.addEventListener('click', deletar);
+botDeletar.addEventListener('click', () => deletar());
+
 const botF1 = document.getElementById("f1");
-botF1.addEventListener('click', func1);
+botF1.addEventListener('click', () => AdicionarAcao("4", f1.id));
+
 const botEditaf1 = document.getElementById("editarf1");
-botEditaf1.addEventListener('click', editaf1);
+botEditaf1.addEventListener('click', () => editaf1());
+
 const botEditaf2 = document.getElementById("editarf2");
-botEditaf2.addEventListener('click', editaf2);
+botEditaf2.addEventListener('click', () => editaf2());
+
 
 
 // "FUNCAO" principal do codigo
