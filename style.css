@@ -189,6 +189,9 @@ main {
 #f1 {
    background-image: url("img/botaof1.png"); 
 }
+#f2 {
+   background-image: url("img/botaof2.png"); 
+}
 #delete{
     background-image: url("img/delete.png"); 
 }

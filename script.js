@@ -6,7 +6,7 @@ let switchf2 = false;
 
 const listaAcoes = [[],[]];
 const posicoesAcesa = [];
-const obstaculos= [17,18,16,19];
+const obstM1= [18,19,23,24,30,25,48,46,42,41,43];
 const listaf1 = [[],[]];
 const listaf2 = [[],[]];
 
@@ -31,7 +31,7 @@ const Jogador = {
         Jogador.anguloAtual-=90;
         Jogador.arrumaAngulo();
         celulaJogador.style.transform = `rotate(${Jogador.anguloAtual}deg)`;
-        console.log(Jogador.anguloAtual);
+        
 
     },
     rotacionarD: function () {
@@ -40,7 +40,7 @@ const Jogador = {
         Jogador.anguloAtual+=90;
         Jogador.arrumaAngulo();
         celulaJogador.style.transform = `rotate(${Jogador.anguloAtual}deg)`;
-        console.log(Jogador.anguloAtual);
+        
     },
     pular: function(){
         Jogador.z +=1;
@@ -69,8 +69,8 @@ const Jogador = {
             
             
         }
-        for (let i=0; i<obstaculos.length; i++){
-            if (Jogador.x + Jogador.y === obstaculos[i] && Jogador.z===0){
+        for (let i=0; i<obstM1.length; i++){
+            if (Jogador.x + Jogador.y === obstM1[i] && Jogador.z===0){
                 colisao = true;
             }
         }
@@ -103,8 +103,8 @@ const Mapa = {
                 }
                 
                 celula.id = `celula-${i}`;
-                for (let k=0; k< obstaculos.length; k++){
-                    if (i === obstaculos[k]) {
+                for (let k=0; k< obstM1.length; k++){
+                    if (i === obstM1[k]) {
                         celula.classList.add("obstaculo");
                     }
                 }
@@ -135,6 +135,7 @@ function AdicionarAcao(nAcao, idAcao,funcao){
         caixaAcoes = document.querySelector(".caixaacoesf1");
         span = document.createElement("span");
         span.id = idAcao;
+        listaf1[1].push(span);
         caixaAcoes.appendChild(span);
         
     }
@@ -143,6 +144,7 @@ function AdicionarAcao(nAcao, idAcao,funcao){
         caixaAcoes = document.querySelector(".caixaacoesf2");
         span = document.createElement("span");
         span.id = idAcao;
+        listaf2[1].push(span);
         caixaAcoes.appendChild(span);
         
     }else{
@@ -150,6 +152,7 @@ function AdicionarAcao(nAcao, idAcao,funcao){
         caixaAcoes = document.querySelector(".caixaacoes");
         span = document.createElement("span");
         span.id = idAcao;
+        listaAcoes[1].push(span);
         caixaAcoes.appendChild(span);
     }
 
@@ -160,8 +163,14 @@ function atualizarPos(){
     Mapa.desenharJogador(Jogador.x, Jogador.y,Jogador.anguloAtual);
 }
 function fazAcao(arrayacao, indice){
+    indiceSpan= indice;
     setTimeout(() => {
+         if (indice>0 && typeof spanSel !== "undefined" ){
+            spanAnt = spanSel
+            spanAnt.style.border = "none";
+        } 
         if (indice>= arrayacao[0].length){
+            spanAnt.style.border = "none";
             botIniciar.disabled = false;
             botAnda.disabled = false;
             botrotD.disabled = false;
@@ -169,6 +178,7 @@ function fazAcao(arrayacao, indice){
             botDeletar.disabled = false;
             return;
         }
+       
         botIniciar.disabled = true;
         botAnda.disabled = true;
         botrotD.disabled = true;
@@ -190,11 +200,19 @@ function fazAcao(arrayacao, indice){
                     break;        
                 case "4":
                     arrayacao[0].splice(indice + 1, 0,...listaf1[0]);
+                    arrayacao[1].splice(indice + 1, 0,...listaf1[1]);
+                    break;
+                case "5":
+                    arrayacao[0].splice(indice + 1, 0,...listaf2[0]);
+                    arrayacao[1].splice(indice + 1, 0,...listaf2[1]);
                     break;
             
             }
             indice++;
-            
+
+            spanSel= arrayacao[1][indiceSpan];
+            spanSel.style.border = "2px red solid ";
+        
             fazAcao(arrayacao, indice);
     }, 1000);
     
@@ -219,13 +237,26 @@ function acender(){
       posicoesAcesa.push(Jogador.x + Jogador. y);
     }
 }
-function deletar(){
-    if (listaAcoes[0].length === 0) {
+function deletar(divAcoes){
+    switch (divAcoes){
+        default :
+            arrayacoes = listaAcoes;
+            caixaAcoes = document.querySelector(".caixaacoes");
+            break;
+        case 1:
+            arrayacoes = listaf1;
+            caixaAcoes = document.querySelector(".caixaacoesf1");
+            break;
+        case 2:
+            arrayacoes = listaf2;
+            caixaAcoes = document.querySelector(".caixaacoesf2");
+            break;
+    }
+    if (arrayacoes[0].length === 0) {
         return;
     }
-    caixaAcoes = document.querySelector(".caixaacoes");
-
-    listaAcoes[0].splice(0, listaAcoes.length);
+    arrayacoes[0].splice(0, arrayacoes[0].length);
+    arrayacoes[1].splice(0, arrayacoes[1].length);
     caixaAcoes.innerHTML = "";
 }
 function func1 (){
@@ -287,6 +318,9 @@ botDeletar.addEventListener('click', () => deletar());
 
 const botF1 = document.getElementById("f1");
 botF1.addEventListener('click', () => AdicionarAcao("4", f1.id));
+
+const botF2 = document.getElementById("f2");
+botF2.addEventListener('click', () => AdicionarAcao("5", f2.id));
 
 const botEditaf1 = document.getElementById("editarf1");
 botEditaf1.addEventListener('click', () => editaf1());
