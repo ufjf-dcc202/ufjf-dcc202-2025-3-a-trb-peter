@@ -1,14 +1,41 @@
 
+
 const areaMapa = document.querySelector('#area');
+const params = new URLSearchParams(window.location.search);
+
 let ligado = false;
 let switchf1 = false;
 let switchf2 = false;
 
 const listaAcoes = [[],[]];
 const posicoesAcesa = [];
-const obstM1= [18,19,23,24,30,25,48,46,42,41,43];
+
+let obst1= [];
+let obst2= [];
+let obst3 = [];
+let posCheckpoint = 0;
+
 const listaf1 = [[],[]];
 const listaf2 = [[],[]];
+
+const MapaAtual = params.get("mapa");
+
+switch (MapaAtual){
+    case '2':
+        obst1= [];
+        posCheckpoint = 47;
+        break;
+    case '3':
+        obst1= [3,4,27,26,28];
+        obst2= [5,6,10,11,29,49,45];
+        obst3 = [42,13,34];
+        posCheckpoint = 47;
+        break;
+    default:
+        obst1= [18,19,23,24,30,25,48,46,42,41,43];
+        posCheckpoint = 47;
+        break;
+}
 
 const Jogador = {
     y: 0,
@@ -49,21 +76,22 @@ const Jogador = {
 
     },
     andar: function(){
-        colisao = false;
+        colisaoObst1 = false;
+        colisaoObst2= false;
         angl = Math.abs(Jogador.anguloAtual);
         posInicial = [Jogador.x,Jogador.y];
-        velHor = Mapa.h/10;
-        velVEr = 1;
+        velHor = 5;
+        velVer = 1;
         limiteVer = Mapa.tam -1;
         switch (angl){
             case 180:
-                if (Jogador.x+1<= limiteVer) {Jogador.x+= limiteVer};
+                if (Jogador.x+1<= limiteVer) {Jogador.x+= velVer};
                 break
             case 90:
                 if (Jogador.y-5>= 0) {Jogador.y-=velHor};
                 break
             case 0:
-                if (Jogador.x-1>=0) {Jogador.x-= limiteVer};
+                if (Jogador.x-1>=0) {Jogador.x-= velVer};
                 break
             case 270:
                 if (Jogador.y+5<=limiteVer) {Jogador.y+=velHor};
@@ -71,18 +99,23 @@ const Jogador = {
             
             
         }
-        for (let i=0; i<obstM1.length; i++){
-            if (Jogador.x + Jogador.y === obstM1[i] && Jogador.z===0){
-                colisao = true;
+        for (let i=0; i<obst1.length; i++){
+            if (Jogador.x + Jogador.y === obst1[i] && Jogador.z===0){
+                colisaoObst1 = true;
             }
         }
-        if (colisao) {
-            Jogador.x = posInicial[0];
-            Jogador.y = posInicial[1];
+        for (let j=0; j<obst2.length; j++){
+            if (Jogador.x + Jogador.y === obst2[j]){
+                colisaoObst2 = true;
+            }
         }
-        if (!colisao) {
+        
+        if (!colisaoObst1 && !colisaoObst2) {
             if (ligado) { posicoesAcesa.push(Jogador.x + Jogador.y); }
             atualizarPos();
+        }else{
+            Jogador.x = posInicial[0];
+            Jogador.y = posInicial[1];
         }
         
     }
@@ -92,7 +125,7 @@ const Mapa = {
     h: 10,
     l: 5,
     tam: 50,
-    checkpoint:47,
+    checkpoint:posCheckpoint,
     area: areaMapa,
     desenharMapa: function () {
         areaMapa.innerHTML = "";
@@ -107,11 +140,23 @@ const Mapa = {
                 }
                 
                 celula.id = `celula-${i}`;
-                for (let k=0; k< obstM1.length; k++){
-                    if (i === obstM1[k]) {
+                for (let k=0; k< obst1.length; k++){
+                    if (i === obst1[k]) {
                         celula.classList.add("obstaculo");
                     }
                 }
+
+                for (let l=0; l< obst2.length; l++){
+                    if (i === obst2[l]) {
+                        celula.classList.add("obstaculo2");
+                    }
+                }
+                for (let m=0; m< obst3.length; m++){
+                    if (i === obst3[m]) {
+                        celula.classList.add("obstaculo3");
+                    }
+                }
+
                 areaMapa.appendChild(celula);
                 
         }
@@ -132,7 +177,7 @@ const Mapa = {
     }
     
 }
-function AdicionarAcao(nAcao, idAcao,funcao){
+function AdicionarAcao(nAcao, idAcao){
     
     if (switchf1){
         listaf1[0].push(nAcao);

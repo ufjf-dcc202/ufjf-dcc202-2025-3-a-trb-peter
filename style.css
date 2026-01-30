@@ -6,6 +6,7 @@ main {
 }
 
 
+
 .mapa {
     grid-column-start: 1;
     grid-row-start: 1;
@@ -33,18 +34,24 @@ main {
 .celula {
      width: 70px;
     height: 70px;
-    background-image: url(img/fundoteste.png);
+    background-image: url(img/fundo.png);
     background-size: cover;
     
 }
 .celula.acesa{
-   background-image: url(img/fundocoloridoteste.png);
+   background-image: url(img/fundocolorido.png);
 }
 .celula.obstaculo.acesa{
     background-image: url(img/murocolorido.png);
 }
 .celula.obstaculo{
     background-image: url(img/muro.jpg);
+}
+.celula.obstaculo2{
+    background-image: url(img/obstaculo2.png);
+}
+.celula.obstaculo3{
+    background-image: url(img/obstaculo3.png);
 }
 .titulo {
     display: flex;
@@ -103,7 +110,7 @@ button:hover {
     padding: 20px;
 }
 
-.main-div { 
+.main-jogo { 
     display:grid;
     grid-template-rows: repeat(4,25%);
     grid-template-columns: repeat(2,50%);
@@ -224,7 +231,7 @@ span{
     display: flex;
     height: 100%;
     width: 100%;
-    background-image: url("img/jogadorteste.png");
+    background-image: url("img/jogador.png");
 }
 
 .tela {
@@ -262,18 +269,30 @@ span{
 
     justify-content: center;
     align-items: center;
-}
-a{
 
+    
+}
+.botoes-inicio a{
+    width: 100%;
+    
+    
     display: flex;
     flex-wrap: wrap;
-   
-    justify-content: center;
+    
+    justify-content: space-between;
     align-items: center;
+
 }
 .botoes-inicio button{
     width: 100%;
-    height: 100%;
-
+  
+    background-image: url("img/fase1.png");
     box-shadow: 8px 4px 10px rgb(98, 98, 98) ;
+    background-position: 0%;
+    background-repeat: no-repeat;
+    background-size:contain;
+    
+    padding: 0;
+    margin: 0;
+    
 }
