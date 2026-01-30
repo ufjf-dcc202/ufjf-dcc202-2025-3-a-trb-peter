@@ -78,6 +78,7 @@ const Jogador = {
     andar: function(){
         colisaoObst1 = false;
         colisaoObst2= false;
+        colisaoObst3= false;
         angl = Math.abs(Jogador.anguloAtual);
         posInicial = [Jogador.x,Jogador.y];
         velHor = 5;
@@ -109,8 +110,17 @@ const Jogador = {
                 colisaoObst2 = true;
             }
         }
+        for (let k=0; k<obst3.length; k++){
+            if (Jogador.x + Jogador.y === obst3[k]){
+                colisaoObst3 = true;
+            }
+        }
         
-        if (!colisaoObst1 && !colisaoObst2) {
+        if (colisaoObst3){
+            alert("Voce perdeu! ;(");
+            location.reload()
+        }
+        else if (!colisaoObst1 && !colisaoObst2) {
             if (ligado) { posicoesAcesa.push(Jogador.x + Jogador.y); }
             atualizarPos();
         }else{
@@ -308,14 +318,7 @@ function deletar(divAcoes){
     arrayacoes[1].splice(0, arrayacoes[1].length);
     caixaAcoes.innerHTML = "";
 }
-function func1 (){
-    listaAcoes[0].push("4");
-    caixaAcoes = document.querySelector(".caixaacoes");
-    imgbotf1 = document.createElement("span");
-    imgbotf1.id = "f1";
-    caixaAcoes.appendChild(imgbotf1);
 
-}
 function editaf1(){
     fundof1 = document.querySelector(".caixaacoesf1");
     if (switchf1){
@@ -356,6 +359,12 @@ botAnda.addEventListener('click', () => AdicionarAcao("2", botAnda.id));
 const botPular = document.getElementById("pular");
 botPular.addEventListener('click', () => AdicionarAcao("3", botPular.id));
 
+const botF1 = document.getElementById("f1");
+botF1.addEventListener('click', () => AdicionarAcao("4", botF1.id));
+
+const botF2 = document.getElementById("f2");
+botF2.addEventListener('click', () => AdicionarAcao("5", botF2.id));
+
 const botAcende = document.getElementById("acende");
 botAcende.addEventListener('click', () => acender());
 
@@ -370,12 +379,6 @@ botDeletarf1.addEventListener('click', () => deletar(1));
 
 const botDeletarf2 = document.getElementById("deletef2");
 botDeletarf2.addEventListener('click', () => deletar(2));
-
-const botF1 = document.getElementById("f1");
-botF1.addEventListener('click', () => AdicionarAcao("4", f1.id));
-
-const botF2 = document.getElementById("f2");
-botF2.addEventListener('click', () => AdicionarAcao("5", f2.id));
 
 const botEditaf1 = document.getElementById("editarf1");
 botEditaf1.addEventListener('click', () => editaf1());
