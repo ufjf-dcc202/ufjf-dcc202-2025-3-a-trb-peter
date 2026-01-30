@@ -45,7 +45,7 @@ main {
     background-image: url(img/murocolorido.png);
 }
 .celula.obstaculo{
-    background-image: url(img/muro.jpg);
+    background-image: url(img/muro.png);
 }
 .celula.obstaculo2{
     background-image: url(img/obstaculo2.png);
@@ -206,7 +206,7 @@ button:hover {
     background-image: url("img/botaoD.png ");
 }
 #pular {
-    background-image: url("img/pularteste.png");
+    background-image: url("img/pular.png");
 }
 #f1 {
    background-image: url("img/botaof1.png"); 
@@ -256,8 +256,8 @@ span{
     
 }
 .container img{
-    height: 70%;
-    width: 70%;
+    height: 60%;
+    width: 60%;
 }
 .botoes-inicio{
     width: 100%;
@@ -274,23 +274,23 @@ span{
 }
 .botoes-inicio a{
     width: 100%;
-    
+    text-decoration: none;
     
     display: flex;
     flex-wrap: wrap;
     
-    justify-content: space-between;
+    margin: 10px; 
     align-items: center;
 
 }
 .botoes-inicio button{
     width: 100%;
-  
-    background-image: url("img/fase1.png");
+    height: 40px;
+   
     box-shadow: 8px 4px 10px rgb(98, 98, 98) ;
     background-position: 0%;
-    background-repeat: no-repeat;
-    background-size:contain;
+    
+    font-size: large;
     
     padding: 0;
     margin: 0;

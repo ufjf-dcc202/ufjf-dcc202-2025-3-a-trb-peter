@@ -90,13 +90,13 @@ const Jogador = {
         limiteVer = Mapa.tam -1;
         switch (angl){
             case 180:
-                if (Jogador.x+1<= limiteVer) {Jogador.x+= velVer};
+                if (Jogador.x+1<= limiteVer  && (Jogador.x + 1) % 5 > 0 ) {Jogador.x+= velVer};
                 break
             case 90:
                 if (Jogador.y-5>= 0) {Jogador.y-=velHor};
                 break
             case 0:
-                if (Jogador.x-1>=0) {Jogador.x-= velVer};
+                if (Jogador.x-1>=0 && (Jogador.x - 1) % 5 > 0) {Jogador.x-= velVer};
                 break
             case 270:
                 if (Jogador.y+5<=limiteVer) {Jogador.y+=velHor};
