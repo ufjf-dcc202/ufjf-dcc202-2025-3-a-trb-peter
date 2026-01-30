@@ -22,7 +22,9 @@ const MapaAtual = params.get("mapa");
 
 switch (MapaAtual){
     case '2':
-        obst1= [];
+        obst1= [10,11,12];
+        obst2=[18,4,3,30,31,43];
+        obst3= [15,16,17,39];
         posCheckpoint = 47;
         break;
     case '3':
@@ -33,6 +35,8 @@ switch (MapaAtual){
         break;
     default:
         obst1= [18,19,23,24,30,25,48,46,42,41,43];
+        obst2=[7,13];
+        obst3 = [14,26,38];
         posCheckpoint = 47;
         break;
 }
@@ -171,7 +175,7 @@ const Mapa = {
                 
         }
         
-        document.getElementById(`celula-${Mapa.checkpoint}`).style.backgroundImage ="url(https://i.pinimg.com/736x/7a/25/27/7a2527042f10403dbbe74146e93640b7.jpg)";
+        document.getElementById(`celula-${Mapa.checkpoint}`).classList.add("chegada");
     },
     desenharJogador: function(x,y,anguloAtual){
         Jpos = x + y;
