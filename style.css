@@ -1,14 +1,15 @@
 * {
     font-family: Impact;
 }
-
+main {
+    display: flex;
+}
 
 
 .mapa {
     grid-column-start: 1;
     grid-row-start: 1;
-    grid-row-end: 4;
-    
+    grid-row-end: 5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,7 +18,7 @@
     
 }
 .area{
-   
+    
     display: grid;
     grid-template-columns: repeat(5,20%);        
 
@@ -30,8 +31,8 @@
 }
 
 .celula {
-     width: 48px;
-    height: 48px;
+     width: 70px;
+    height: 70px;
     background-image: url(img/fundoteste.png);
     background-size: cover;
     
@@ -66,6 +67,9 @@ button:hover {
 }
 .divedita {
     display: flex;
+    align-items: center;
+   
+
 }
 
 .edita{
@@ -77,8 +81,16 @@ button:hover {
    padding: 0;
   
    margin: 0;
-    margin-left: 5px;
+   margin-left: 5px;
 
+}
+.divedita button {
+   height: 3vw;
+   width:3vw;
+   padding: 0;
+  
+   margin: 0;
+   margin-left: 5px;
 }
 
 
@@ -91,18 +103,21 @@ button:hover {
     padding: 20px;
 }
 
-main { 
+.main-div { 
     display:grid;
     grid-template-rows: repeat(4,25%);
     grid-template-columns: repeat(2,50%);
-     width: 100%;
-    height: 100%;
+    width: 100%;
+    height: 98vh;
 }
 .acoes{
     display: block;
     grid-column-start: 2;
     grid-row-start: 1;
     
+}
+.delete{
+    background-image: url("img/delete.png"); 
 }
 
 
@@ -192,9 +207,7 @@ main {
 #f2 {
    background-image: url("img/botaof2.png"); 
 }
-#delete{
-    background-image: url("img/delete.png"); 
-}
+
 #iniciar{
     background-image: url("img/botaoiniciar.png"); 
 }
@@ -212,4 +225,55 @@ span{
     height: 100%;
     width: 100%;
     background-image: url("img/jogadorteste.png");
+}
+
+.tela {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 98vh;
+    width: 98vw;
+ 
+}
+.container{
+    width: 30%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px black solid;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px black ;
+    padding: 40px;
+    
+}
+.container img{
+    height: 70%;
+    width: 70%;
+}
+.botoes-inicio{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+a{
+
+    display: flex;
+    flex-wrap: wrap;
+   
+    justify-content: center;
+    align-items: center;
+}
+.botoes-inicio button{
+    width: 100%;
+    height: 100%;
+
+    box-shadow: 8px 4px 10px rgb(98, 98, 98) ;
 }

@@ -52,19 +52,21 @@ const Jogador = {
         colisao = false;
         angl = Math.abs(Jogador.anguloAtual);
         posInicial = [Jogador.x,Jogador.y];
-        
+        velHor = Mapa.h/10;
+        velVEr = 1;
+        limiteVer = Mapa.tam -1;
         switch (angl){
             case 180:
-                if (Jogador.x+1<= 49 || Jogador.x+1) {Jogador.x++};
+                if (Jogador.x+1<= limiteVer) {Jogador.x+= limiteVer};
                 break
             case 90:
-                if (Jogador.y-5>= 0) {Jogador.y-=5};
+                if (Jogador.y-5>= 0) {Jogador.y-=velHor};
                 break
             case 0:
-                if (Jogador.x-1>=0) {Jogador.x--};
+                if (Jogador.x-1>=0) {Jogador.x-= limiteVer};
                 break
             case 270:
-                if (Jogador.y+5<=49) {Jogador.y+=5};
+                if (Jogador.y+5<=limiteVer) {Jogador.y+=velHor};
                 break
             
             
@@ -87,6 +89,8 @@ const Jogador = {
 
 }
 const Mapa = {
+    h: 10,
+    l: 5,
     tam: 50,
     checkpoint:47,
     area: areaMapa,
@@ -315,6 +319,12 @@ botIniciar.addEventListener('click', () => fazerAcoes());
 
 const botDeletar = document.getElementById("delete");
 botDeletar.addEventListener('click', () => deletar());
+
+const botDeletarf1 = document.getElementById("deletef1");
+botDeletarf1.addEventListener('click', () => deletar(1));
+
+const botDeletarf2 = document.getElementById("deletef2");
+botDeletarf2.addEventListener('click', () => deletar(2));
 
 const botF1 = document.getElementById("f1");
 botF1.addEventListener('click', () => AdicionarAcao("4", f1.id));
